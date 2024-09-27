@@ -1,0 +1,46 @@
+<div class="container mx-auto my-4 max-w-xl">
+    <h1 class="text-xl font-bold mb-4 text-center">Lista de Animales</h1>
+
+    <div class="flex justify-between mb-2">
+        <!-- Selector de Corrales -->
+        <select class="border border-gray-300 p-1 rounded text-sm">
+            <option value="" disabled selected>Seleccionar Corral</option>
+            <option>Corral</option>
+        </select>
+
+        <!-- Botón para añadir un nuevo animal -->
+        <button (click)="abrirModal()" class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600 transition">Añadir Animal</button>
+    </div>
+
+    <table class="min-w-full bg-white border border-gray-200 shadow-lg">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="py-2 px-2 border-b text-left text-sm">Nombre</th>
+          <th class="py-2 px-2 border-b text-left text-sm">Edad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let animal of animales" class="hover:bg-gray-100">
+          <td class="py-1 px-2 border-b text-sm">{{ animal.nombre }}</td>
+          <td class="py-1 px-2 border-b text-sm">{{ animal.edad }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Modal para añadir animal -->
+    <div *ngIf="mostrarModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white p-4 rounded shadow-lg">
+        <h2 class="text-lg font-bold mb-2">Añadir Animal</h2>
+        <label for="nombre" class="block mb-1 text-sm">Nombre:</label>
+        <input id="nombre" [(ngModel)]="nuevoAnimal.nombre" class="border border-gray-300 p-1 mb-2 w-full" type="text">
+  
+        <label for="edad" class="block mb-1 text-sm">Edad:</label>
+        <input id="edad" [(ngModel)]="nuevoAnimal.edad" class="border border-gray-300 p-1 mb-2 w-full" type="number">
+  
+        <button class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600 transition">Añadir</button>
+        <button (click)="cerrarModal()" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition ml-2">Cancelar</button>
+      </div>
+    </div>
+  
+   
+</div>
